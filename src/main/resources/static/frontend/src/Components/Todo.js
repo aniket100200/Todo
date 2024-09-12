@@ -9,10 +9,11 @@ const Todo = () => {
     const[note,setNote] = useState("hidden");
     const[noteVal,setNoteVal] = useState("");
     let tI=null;
+    const baseUrl="https://todo-production-0745.up.railway.app/"
 
     useEffect(() => {
         const getData = async () => {
-            const resp = await fetch('http://localhost:8080/todo/getAll');
+            const resp = await fetch(`${baseUrl}todo/getAll`);
             const json = await resp.json();
             setData(json);
             console.log(json);
@@ -28,7 +29,7 @@ const Todo = () => {
                    return;
             }
         }
-        const resp = await fetch('http://localhost:8080/todo/add', {
+        const resp = await fetch(`${baseUrl}todo/add`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -59,7 +60,7 @@ const Todo = () => {
 
     const delteTask = async (id) => {
 
-        const resp = await fetch(`http://localhost:8080/todo/delete?id=${id}`, {
+        const resp = await fetch(`${baseUrl}todo/delete?id=${id}`, {
             method: 'DELETE',
            headers: { 'Content-Type': 'application/json'},
         });
